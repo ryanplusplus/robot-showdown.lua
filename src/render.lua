@@ -23,11 +23,11 @@ local function grid_to_string(grid)
   return table.concat(grid, '\n') .. '\n'
 end
 
-return function(config)
-  assert(config.size % 2 == 1, 'Grid size must be odd')
+return function(state)
+  assert(state.size % 2 == 1, 'Grid size must be odd')
 
-  local size = config.size
-  local robots = config.robots or {}
+  local size = state.size
+  local robots = state.robots or {}
   local grid = generate_empty_grid(size)
 
   local function render_hex(x, y)

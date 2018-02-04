@@ -1,9 +1,9 @@
-describe('render_grid', function()
-  local render_grid = require 'render_grid'
+describe('render', function()
+  local render = require 'render'
 
   it('should disallow even grid sizes', function()
     assert.has_error(function()
-      render_grid({ size = 2 })
+      render({ size = 2 })
     end, 'Grid size must be odd')
   end)
 
@@ -14,7 +14,7 @@ describe('render_grid', function()
 \___/
 ]]
 
-    assert.are.equal(expected, render_grid({ size = 1 }))
+    assert.are.equal(expected, render({ size = 1 }))
   end)
 
   it('should render a grid with size 3', function()
@@ -28,7 +28,7 @@ describe('render_grid', function()
     \___/
 ]]
 
-    assert.are.equal(expected, render_grid({ size = 3 }))
+    assert.are.equal(expected, render({ size = 3 }))
   end)
 
   it('should render a grid with size 5', function()
@@ -46,7 +46,7 @@ describe('render_grid', function()
         \___/
 ]]
 
-    assert.are.equal(expected, render_grid({ size = 5 }))
+    assert.are.equal(expected, render({ size = 5 }))
   end)
 
   it('should allow robots to be rendered', function()
@@ -64,7 +64,7 @@ describe('render_grid', function()
         \___/
 ]]
 
-    assert.are.equal(expected, render_grid({
+    assert.are.equal(expected, render({
       size = 5,
       robots = {
         { x = 2, y = 2, heading = 'north' },
