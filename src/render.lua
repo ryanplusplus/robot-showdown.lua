@@ -60,7 +60,7 @@ return function(state)
     local x = (robot.x * 4) + heading_offset[robot.heading].dx
     local y = (robot.y * 1) + heading_offset[robot.heading].dy
 
-    grid[y][x] = 'o'
+    grid[y][x] = robot.marker
   end
 
   for i = 0, math.ceil(size / 2) - 1 do

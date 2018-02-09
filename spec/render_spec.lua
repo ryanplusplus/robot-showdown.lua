@@ -55,11 +55,11 @@ describe('render', function()
      ___/   \___
  ___/   \___/   \___
 /   \___/ o \___/   \
-\___/o  \___/  o\___/
+\___/x  \___/  o\___/
 /   \___/   \___/   \
 \___/   \___/   \___/
-/   \o__/   \__o/   \
-\___/   \_o_/   \___/
+/   \x__/   \__o/   \
+\___/   \_x_/   \___/
     \___/   \___/
         \___/
 ]]
@@ -67,12 +67,12 @@ describe('render', function()
     assert.are.equal(expected, render({
       size = 5,
       robots = {
-        { x = 2, y = 2, heading = 'north' },
-        { x = 3, y = 3, heading = 'northeast' },
-        { x = 3, y = 5, heading = 'southeast' },
-        { x = 2, y = 6, heading = 'south' },
-        { x = 1, y = 5, heading = 'southwest' },
-        { x = 1, y = 3, heading = 'northwest' },
+        { x = 2, y = 2, marker = 'o', heading = 'north' },
+        { x = 3, y = 3, marker = 'o', heading = 'northeast' },
+        { x = 3, y = 5, marker = 'o', heading = 'southeast' },
+        { x = 2, y = 6, marker = 'x', heading = 'south' },
+        { x = 1, y = 5, marker = 'x', heading = 'southwest' },
+        { x = 1, y = 3, marker = 'x', heading = 'northwest' },
       }
     }))
   end)
