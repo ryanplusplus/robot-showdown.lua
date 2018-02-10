@@ -57,8 +57,8 @@ return function(state)
       southwest = { dx = 2, dy = 3 },
       northwest = { dx = 2, dy = 2 }
     }
-    local x = (robot.x * 4) + heading_offset[robot.heading].dx
-    local y = (robot.y * 1) + heading_offset[robot.heading].dy
+    local x = (robot.position.x * 4) + heading_offset[robot.heading].dx
+    local y = (robot.position.y * 1) + heading_offset[robot.heading].dy
 
     grid[y][x] = robot.marker
   end
