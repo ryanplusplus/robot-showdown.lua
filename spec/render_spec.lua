@@ -67,12 +67,12 @@ describe('render', function()
     assert.are.equal(expected, render({
       size = 5,
       robots = {
-        { position = { x = 2, y = 2 }, heading = 'north', marker = 'o' },
-        { position = { x = 3, y = 3 }, heading = 'northeast', marker = 'o' },
-        { position = { x = 3, y = 5 }, heading = 'southeast', marker = 'o' },
-        { position = { x = 2, y = 6 }, heading = 'south', marker = 'x' },
-        { position = { x = 1, y = 5 }, heading = 'southwest', marker = 'x' },
-        { position = { x = 1, y = 3 }, heading = 'northwest', marker = 'x' },
+        { position = { x = 0, y = 2 }, heading = 'north', marker = 'o' },
+        { position = { x = 1, y = 1 }, heading = 'northeast', marker = 'o' },
+        { position = { x = 1, y = -1 }, heading = 'southeast', marker = 'o' },
+        { position = { x = 0, y = -2 }, heading = 'south', marker = 'x' },
+        { position = { x = -1, y = -1 }, heading = 'southwest', marker = 'x' },
+        { position = { x = -1, y = 1 }, heading = 'northwest', marker = 'x' },
       }
     }))
   end)

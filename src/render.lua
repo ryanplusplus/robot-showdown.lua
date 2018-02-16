@@ -1,4 +1,4 @@
-local function trim_right(s)
+  local function trim_right(s)
   return (s:match('(.-)%s*$'))
 end
 
@@ -57,8 +57,8 @@ return function(state)
       southwest = { dx = 2, dy = 3 },
       northwest = { dx = 2, dy = 2 }
     }
-    local x = (robot.position.x * 4) + heading_offset[robot.heading].dx
-    local y = (robot.position.y * 1) + heading_offset[robot.heading].dy
+    local x = ((robot.position.x + 1 * (size // 2)) * 4) + heading_offset[robot.heading].dx
+    local y = ((-robot.position.y + 2 * (size // 2)) * 1) + heading_offset[robot.heading].dy
 
     grid[y][x] = robot.marker
   end
