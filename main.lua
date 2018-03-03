@@ -14,8 +14,8 @@ function love.load()
 
   world = love.physics.newWorld(0, 0, false)
   arena = Arena(window)
-  r1 = Robot(window, world)
-  r2 = Robot(window, world)
+  r1 = Robot(window, world, { 65, 65, 100 })
+  r2 = Robot(window, world, { 65, 100, 65 })
 
   r1.place(window.width / 2, window.height * 0.75, 0)
   r2.place(window.width / 2, window.height * 0.25, math.pi)
@@ -24,8 +24,19 @@ end
 
 function love.update(dt)
   world:update(dt)
-  r1.drive(love.keyboard.isDown('left'), love.keyboard.isDown('right'))
-  r2.drive(love.keyboard.isDown('z'), love.keyboard.isDown('x'))
+
+  r1.drive(
+    love.keyboard.isDown('left') and 1 or 0,
+    love.keyboard.isDown('right') and 1 or 0
+  )
+  r2.drive(
+    love.keyboard.isDown('z') and 1 or 0,
+    love.keyboard.isDown('x') and 1 or 0
+  )
+
+  print('---')
+  print('r1', arena.point_location(r1.position()))
+  print('r2', arena.point_location(r2.position()))
 end
 
 function love.draw()

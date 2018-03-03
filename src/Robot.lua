@@ -15,6 +15,16 @@ local function RobotTread(window, world)
     width = width,
     height = height,
 
+    drive = function(power)
+      local max_f = 200000
+
+      local f = max_f * power
+      local w = body:getAngle()
+      local fx = math.sin(w) * f
+      local fy = -math.cos(w) * f
+      body:applyForce(fx, fy, body:getX(), body:getY())
+    end,
+
     draw = function()
       love.graphics.setColor(125, 125, 125)
       love.graphics.polygon('fill', body:getWorldPoints(shape:getPoints()))
@@ -22,7 +32,7 @@ local function RobotTread(window, world)
   }
 end
 
-local function RobotChassis(window, world)
+local function RobotChassis(window, world, color)
   local width = window.width / 16
   local height = window.height / 11
   local body = love.physics.newBody(world, 0, 0, 'dynamic')
@@ -38,16 +48,16 @@ local function RobotChassis(window, world)
     height = height,
 
     draw = function()
-      love.graphics.setColor(65, 65, 100)
+      love.graphics.setColor(unpack(color))
       love.graphics.polygon('fill', body:getWorldPoints(shape:getPoints()))
     end
   }
 end
 
-return function(window, world)
+return function(window, world, color)
   local left_tread = RobotTread(window, world)
   local right_tread = RobotTread(window, world)
-  local chassis = RobotChassis(window, world)
+  local chassis = RobotChassis(window, world, color)
 
   local tread_offset = chassis.width / 2 + left_tread.width / 2
 
@@ -71,7 +81,9 @@ return function(window, world)
   )
 
   return {
-    body = chassis.body,
+    position = function()
+      return chassis.body:getX(), chassis.body:getY()
+    end,
 
     place = function(x, y, w)
       chassis.body:setAngle(w)
@@ -91,21 +103,8 @@ return function(window, world)
     end,
 
     drive = function(left, right)
-      if left then
-        local f = 200000
-        local w = left_tread.body:getAngle()
-        local fx = math.sin(w) * f
-        local fy = -math.cos(w) * f
-        left_tread.body:applyForce(fx, fy, left_tread.body:getX(), left_tread.body:getY())
-      end
-
-      if right then
-        local f = 200000
-        local w = left_tread.body:getAngle()
-        local fx = math.sin(w) * f
-        local fy = -math.cos(w) * f
-        right_tread.body:applyForce(fx, fy, right_tread.body:getX(), right_tread.body:getY())
-      end
+      left_tread.drive(left)
+      right_tread.drive(right)
     end,
 
     draw = function()
