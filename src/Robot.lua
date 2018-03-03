@@ -1,14 +1,14 @@
 local function RobotTread(window, world)
-  local width = window.width / 65
-  local height = window.height / 13
+  local width = window.width / 45
+  local height = window.height / 10
   local body = love.physics.newBody(world, 0, 0, 'dynamic')
   local shape = love.physics.newRectangleShape(width, height)
   local fixture = love.physics.newFixture(body, shape)
 
   body:setMass(15)
   body:setLinearDamping(50)
-  fixture:setFriction(0.85)
-  fixture:setRestitution(0.1)
+  fixture:setFriction(0.6)
+  fixture:setRestitution(0.75)
 
   return {
     body = body,
@@ -23,13 +23,13 @@ local function RobotTread(window, world)
 end
 
 local function RobotChassis(window, world)
-  local width = window.width / 20
-  local height = window.height / 14
+  local width = window.width / 16
+  local height = window.height / 11
   local body = love.physics.newBody(world, 0, 0, 'dynamic')
   local shape = love.physics.newRectangleShape(width, height)
   local fixture = love.physics.newFixture(body, shape)
 
-  fixture:setFriction(0.50)
+  fixture:setFriction(0.4)
   fixture:setRestitution(0)
 
   return {
@@ -92,7 +92,7 @@ return function(window, world)
 
     drive = function(left, right)
       if left then
-        local f = 130000
+        local f = 200000
         local w = left_tread.body:getAngle()
         local fx = math.sin(w) * f
         local fy = -math.cos(w) * f
@@ -100,7 +100,7 @@ return function(window, world)
       end
 
       if right then
-        local f = 130000
+        local f = 200000
         local w = left_tread.body:getAngle()
         local fx = math.sin(w) * f
         local fy = -math.cos(w) * f

@@ -24,8 +24,8 @@ end
 
 function love.update(dt)
   world:update(dt)
-
   r1.drive(love.keyboard.isDown('left'), love.keyboard.isDown('right'))
+  r2.drive(love.keyboard.isDown('z'), love.keyboard.isDown('x'))
 end
 
 function love.draw()
