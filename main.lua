@@ -1,4 +1,4 @@
-local window = { width = 650, height = 650 }
+local window = { width = 1000, height = 1000 }
 
 local world
 local arena
@@ -27,7 +27,7 @@ function love.update(dt)
 
   r1.drive(
     love.keyboard.isDown('left') and 1 or 0,
-    love.keyboard.isDown('right') and 1 or 0
+    love.keyboard.isDown('right') and -1 or 0
   )
   r2.drive(
     love.keyboard.isDown('z') and 1 or 0,

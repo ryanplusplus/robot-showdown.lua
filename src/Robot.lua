@@ -6,7 +6,7 @@ local function RobotTread(window, world)
   local fixture = love.physics.newFixture(body, shape)
 
   body:setMass(15)
-  body:setLinearDamping(50)
+  body:setLinearDamping(15)
   fixture:setFriction(0.6)
   fixture:setRestitution(0.75)
 
@@ -16,7 +16,7 @@ local function RobotTread(window, world)
     height = height,
 
     drive = function(power)
-      local max_f = 200000
+      local max_f = 130000
 
       local f = max_f * power
       local w = body:getAngle()
