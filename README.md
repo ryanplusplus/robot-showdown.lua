@@ -1,6 +1,5 @@
-# robot-showdown.lua
-## Installation
+# sumo-bot.lua
+
 ```shell
-luarocks install lrt
-lrt install dependencies-scm-1.rockspec --only-deps
+love .
 ```
