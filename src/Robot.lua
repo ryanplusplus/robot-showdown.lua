@@ -1,6 +1,6 @@
 local function RobotTread(window, world)
-  local width = window.width / 45
-  local height = window.height / 10
+  local width = window.size / 45
+  local height = window.size / 10
   local body = love.physics.newBody(world, 0, 0, 'dynamic')
   local shape = love.physics.newRectangleShape(width, height)
   local fixture = love.physics.newFixture(body, shape)
@@ -33,8 +33,8 @@ local function RobotTread(window, world)
 end
 
 local function RobotChassis(window, world, color)
-  local width = window.width / 16
-  local height = window.height / 11
+  local width = window.size / 16
+  local height = window.size / 11
   local body = love.physics.newBody(world, 0, 0, 'dynamic')
   local shape = love.physics.newRectangleShape(width, height)
   local fixture = love.physics.newFixture(body, shape)
