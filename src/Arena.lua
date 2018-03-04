@@ -15,11 +15,11 @@ return function(window)
       love.graphics.circle('fill', x, y, inner_radius)
     end,
 
-    point_location = function(x, y)
+    at = function(x, y)
       if inner_circle:testPoint(0, 0, 0, x, y) then
         return 'inside'
       elseif outer_circle:testPoint(0, 0, 0, x, y) then
-        return 'border'
+        return 'line'
       else
         return 'outside'
       end

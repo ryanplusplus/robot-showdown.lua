@@ -4,39 +4,48 @@ local world
 local arena
 local ground
 local r1, r2
+local sensor = {
+  line = require 'src.sensor.line'
+}
+local ai = require 'sample.Robot'()
 
 local Arena = require 'src.Arena'
 local Robot = require 'src.Robot'
 
 function love.load(args)
   love.window.setMode(window.size, window.size)
-  love.physics.setMeter(64)
+  love.physics.setMeter(128)
 
   world = love.physics.newWorld(0, 0, false)
   arena = Arena(window)
   r1 = Robot(window, world, { 65, 65, 100 })
-  r2 = Robot(window, world, { 65, 100, 65 })
+  -- r2 = Robot(window, world, { 65, 100, 65 })
 
   r1.place(window.size / 2, window.size * 0.75, 0)
-  r2.place(window.size / 2, window.size * 0.25, math.pi)
+  -- r2.place(window.size / 2, window.size * 0.25, math.pi)
 end
-
 
 function love.update(dt)
   world:update(dt)
 
-  r1.drive(
-    love.keyboard.isDown('left') and 1 or 0,
-    love.keyboard.isDown('right') and 1 or 0
-  )
-  r2.drive(
-    love.keyboard.isDown('z') and 1 or 0,
-    love.keyboard.isDown('x') and 1 or 0
-  )
+  -- r1.drive(
+  --   love.keyboard.isDown('left') and 1 or 0,
+  --   love.keyboard.isDown('right') and 1 or 0
+  -- )
+  -- r2.drive(
+  --   love.keyboard.isDown('z') and 1 or 0,
+  --   love.keyboard.isDown('x') and 1 or 0
+  -- )
 
-  print('---')
-  print('r1', arena.point_location(r1.position()))
-  print('r2', arena.point_location(r2.position()))
+  local function update_ai(ai)
+    local inputs = {}
+    for _, config in ipairs(ai.sensors) do
+      inputs[config.name] = sensor[config.type](config, arena, r1)
+    end
+    return ai.update(dt, inputs)
+  end
+
+  r1.drive(update_ai(ai))
 end
 
 function love.draw()
@@ -44,5 +53,5 @@ function love.draw()
 
   arena:draw()
   r1:draw()
-  r2:draw()
+  -- r2:draw()
 end

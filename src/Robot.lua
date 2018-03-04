@@ -85,6 +85,18 @@ return function(window, world, color)
       return chassis.body:getX(), chassis.body:getY()
     end,
 
+    point_at = function(x_rel, y_rel)
+      local w = chassis.body:getAngle()
+
+      local x = x_rel * (chassis.width / 2)
+      local y = -y_rel * (chassis.height / 2)
+
+      local x_trans = math.cos(w) * x - math.sin(w) * y + chassis.body:getX()
+      local y_trans = math.cos(w) * y + math.sin(w) * x + chassis.body:getY()
+
+      return x_trans, y_trans
+    end,
+
     place = function(x, y, w)
       chassis.body:setAngle(w)
       chassis.body:setPosition(x, y)
