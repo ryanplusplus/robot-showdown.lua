@@ -11,7 +11,8 @@ local Arena = require 'src.Arena'
 local Robot = require 'src.Robot'
 
 function love.load(args)
-  love.window.setMode(600, 600, { resizable = true, highdpi = true })
+  local width, height = love.window.getMode()
+  love.window.setMode(width, height, { resizable = true, highdpi = true })
 
   world = love.physics.newWorld(0, 0, false)
   arena = Arena()
@@ -46,8 +47,8 @@ function love.draw()
     dy = (height - width) / 2
   end
 
-  love.graphics.scale(scale, scale)
   love.graphics.translate(dx, dy)
+  love.graphics.scale(scale, scale)
   love.graphics.setBackgroundColor(150, 150, 165)
 
   arena:draw()
