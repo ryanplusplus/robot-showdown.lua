@@ -1,5 +1,7 @@
 return function()
   return {
+    color = { 65, 65, 100 },
+
     sensors = {
       { type = 'line', name = 'line_front_center', position = { x = 0.0, y = 1.0 } }
     },

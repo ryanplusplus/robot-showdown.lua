@@ -1,6 +1,6 @@
-local function RobotTread(window, world)
-  local width = window.size / 45
-  local height = window.size / 10
+local function RobotTread(world)
+  local width = 22
+  local height = 100
   local body = love.physics.newBody(world, 0, 0, 'dynamic')
   local shape = love.physics.newRectangleShape(width, height)
   local fixture = love.physics.newFixture(body, shape)
@@ -32,9 +32,9 @@ local function RobotTread(window, world)
   }
 end
 
-local function RobotChassis(window, world, color)
-  local width = window.size / 16
-  local height = window.size / 11
+local function RobotChassis(world, color)
+  local width = 63
+  local height = 91
   local body = love.physics.newBody(world, 0, 0, 'dynamic')
   local shape = love.physics.newRectangleShape(width, height)
   local fixture = love.physics.newFixture(body, shape)
@@ -54,10 +54,10 @@ local function RobotChassis(window, world, color)
   }
 end
 
-return function(window, world, color)
-  local left_tread = RobotTread(window, world)
-  local right_tread = RobotTread(window, world)
-  local chassis = RobotChassis(window, world, color)
+return function(world, color)
+  local left_tread = RobotTread(world)
+  local right_tread = RobotTread(world)
+  local chassis = RobotChassis(world, color)
 
   local tread_offset = chassis.width / 2 + left_tread.width / 2
 

@@ -1,8 +1,10 @@
-return function(window)
-  local x = window.size / 2
-  local y = window.size / 2
-  local inner_radius = (window.size * 0.8) / 2
-  local outer_radius = (window.size * 0.84) / 2
+local size = 1000
+
+return function()
+  local x = 1000 / 2
+  local y = 1000 / 2
+  local inner_radius = (1000 * 0.8) / 2
+  local outer_radius = (1000 * 0.84) / 2
   local inner_circle = love.physics.newCircleShape(x, y, inner_radius)
   local outer_circle = love.physics.newCircleShape(x, y, outer_radius)
 
