@@ -1,5 +1,14 @@
 # sumo-bot.lua
+## Running Tests
+Install development dependencies with:
 
 ```shell
-love .
+luarocks install lrt
+lrt install deps-dev-0.rockspec
+```
+
+Run tests with:
+
+```shell
+lrt r busted
 ```

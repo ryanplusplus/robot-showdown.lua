@@ -1,6 +1,8 @@
 return function()
   return {
-    color = { 65, 65, 100 },
+    name = 'Robot 2',
+
+    color = { 65, 100, 65 },
 
     sensors = {
       { type = 'line', name = 'line_front_center', position = { x = 0.0, y = 1.0 } }
@@ -8,6 +10,12 @@ return function()
 
     update = coroutine.wrap(function(dt, sensor)
       local time
+
+      time = 0
+      while time < 0.1 do
+        dt, sensor = coroutine.yield(-1, 1)
+        time = time + dt
+      end
 
       while true do
         if sensor.line_front_center then
