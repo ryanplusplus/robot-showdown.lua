@@ -17,7 +17,7 @@ local sensor = {
 
 function love.load(args)
   local width, height = love.window.getMode()
-  love.window.setMode(width, height, { resizable = true, highdpi = true })
+  love.window.setMode(width, height, { resizable = true })
 
   world = love.physics.newWorld(0, 0, false)
   arena = Arena()
@@ -30,11 +30,21 @@ function love.load(args)
   update = Update(arena, sensor)
 end
 
-function love.update(dt)
-  world:update(dt)
+local winner
 
-  r1.drive(update(ai1, r1, r2, dt))
-  r2.drive(update(ai2, r2, r1, dt))
+function love.update(dt)
+  if not winner then
+    world:update(dt)
+
+    if arena.at(r1.position()) == 'outside' then
+      winner = ai2
+    elseif arena.at(r2.position()) == 'outside' then
+      winner = ai1
+    else
+      r1.drive(update(ai1, r1, r2, dt))
+      r2.drive(update(ai2, r2, r1, dt))
+    end
+  end
 end
 
 function love.draw()
@@ -54,4 +64,10 @@ function love.draw()
   arena:draw()
   r1:draw()
   r2:draw()
+
+  if winner then
+    love.graphics.setColor(255, 255, 255)
+    love.graphics.setFont(love.graphics.newFont(60))
+    love.graphics.printf(winner.name .. ' is winnar', width / 2 - dx, height / 2, scale * render_size, 'left')
+  end
 end
