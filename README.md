@@ -12,3 +12,9 @@ Run tests with:
 ```shell
 lrt r busted
 ```
+
+# Running Application
+
+```shell
+love .
+```
